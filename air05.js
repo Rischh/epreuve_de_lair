@@ -12,7 +12,7 @@ const getTreatmentOnNumbers = (numbers, operator, offset) => {
   return result
 }
 
-const validateArgsCount = (args) => {
+const isValidArgsLength = (args) => {
   if (args.length < 2)
     return console.error(
       "Le programme a besoin d'au moins 2 arguments pour fonctionner."
@@ -20,30 +20,21 @@ const validateArgsCount = (args) => {
   return args
 }
 
-const validateNumericArg = (arg) => {
-  if (isNaN(arg))
-    return console.error(
-      "Le programme a besoin d'une liste de nombres pour fonctionner."
-    )
-  return +arg
+const isValidNumber = (n) => {
+  if (isNaN(n))
+    return console.error("Le programme a besoin d'un nombre pour fonctionner.")
+  return n
 }
 
-const validateOperator = (ope) => {
+const isValidOperator = (operator) => {
   const validOperators = ["+", "-"]
-  if (!validOperators.includes(ope)) {
+
+  if (!validOperators.includes(operator)) {
     return console.error(
-      "Le programme a besoin d'un traitement (addition ou soustraction) comme dernier argument pour fonctionner."
+      "Le programme a besoin d'un operateur valide comme argument pour fonctionner."
     )
   }
-  return ope[0]
-}
-
-const validateNumericOffset = (offset) => {
-  if (isNaN(offset))
-    return console.error(
-      "Le programme a besoin d'un nombre comme operation pour fonctionner."
-    )
-  return offset
+  return operator
 }
 
 const getArgs = () => {
@@ -52,31 +43,28 @@ const getArgs = () => {
 }
 
 const resolveTreatmentOnNumbers = () => {
-  const args = validateArgsCount(getArgs())
+  const args = isValidArgsLength(getArgs())
   if (!args) return
 
-  const numbers = [...args]
-  const treatment = numbers[numbers.length - 1]
-  numbers.pop()
-
-  for (let i = 0; i < numbers.length; i++) {
-    if (!validateNumericArg(numbers[i])) return
-    numbers[i] = +numbers[i]
+  const numbers = []
+  for (let i = 0; i < args.length - 1; i++) {
+    if (!isValidNumber(args[i])) return
+    numbers.push(+args[i])
   }
 
-  const operator = validateOperator(treatment[0])
+  const treatment = args[args.length - 1]
+
+  const operator = isValidOperator(treatment[0])
   if (!operator) return
 
   let offset = ""
 
   for (let i = 1; i < treatment.length; i++) {
-    if (!validateNumericOffset(treatment[i])) return
+    if (!isValidNumber(treatment[i])) return
     offset += treatment[i]
   }
 
-  offset = +offset
-
-  return getTreatmentOnNumbers(numbers, operator, offset)
+  return getTreatmentOnNumbers(numbers, operator, +offset)
 }
 
 console.log(resolveTreatmentOnNumbers())

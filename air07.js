@@ -18,7 +18,7 @@ const insertIntoSortedNumbers = (numbers, insertNumber) => {
   return insertInNumbers
 }
 
-const validateArgsCount = (args) => {
+const isValidArgsLength = (args) => {
   if (args.length < 3)
     return console.error(
       "Le programme a besoin d'au moins 3 arguments pour fonctionner."
@@ -26,20 +26,20 @@ const validateArgsCount = (args) => {
   return args
 }
 
-const validateNumericArg = (arg) => {
-  if (isNaN(arg))
-    return console.error(
-      "Le programme a besoin d'une liste compose de nombres pour fonctionner."
-    )
-  return true
+const isValidNumber = (n) => {
+  if (isNaN(n))
+    return console.error("Le programme a besoin d'un nombre pour fonctionner.")
+  return n
 }
 
-const validateSortedNumbers = (numbers) => {
-  for (let i = 1; i < numbers.length; i++) {
-    if (numbers[i] < numbers[i - 1])
-      return console.error(
-        "Le programme a besoin d'une liste de nombres trie pour fonctioner."
-      )
+const isValidSortedNumbers = (numbers) => {
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+      if (numbers[j] < numbers[i])
+        return console.error(
+          "Le programme a besoin d'une liste de nombres triee pour fonctioner."
+        )
+    }
   }
   return numbers
 }
@@ -50,19 +50,19 @@ const getArgs = () => {
 }
 
 const displayInsertIntoSortNumbers = () => {
-  const args = validateArgsCount(getArgs())
+  const args = isValidArgsLength(getArgs())
   if (!args) return
 
-  const numbers = [...args]
-  for (let i = 0; i < numbers.length; i++) {
-    if (!validateNumericArg(numbers[i])) return
-    numbers[i] = +numbers[i]
+  const numbers = []
+  for (const arg of args) {
+    if (!isValidNumber(arg)) return
+    numbers.push(+arg)
   }
 
   const insertNumber = numbers[numbers.length - 1]
   numbers.pop()
 
-  const sortedNumbers = validateSortedNumbers(numbers)
+  const sortedNumbers = isValidSortedNumbers(numbers)
   if (!sortedNumbers) return
 
   return insertIntoSortedNumbers(sortedNumbers, insertNumber).join(", ")

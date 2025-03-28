@@ -9,20 +9,20 @@ const getRemoveAdjacentChar = (string) => {
   return result
 }
 
-const validateArgCount = (args) => {
+const isValidArgsLengtt = (args) => {
   if (args.length !== 1)
     return console.error(
-      "Le programme a besoin d'un argument pour fonctionner."
+      "Le programme a besoin d'un unique argument pour fonctionner."
     )
-  return args[0]
+  return args
 }
 
-const validateStringArg = (arg) => {
-  if (!isNaN(arg))
+const isValidString = (string) => {
+  if (!isNaN(string))
     return console.error(
-      "Le programme a besoin d'une chaine de caracteres comme argument pour fonctionner."
+      "Le programme a besoin d'une chaine de caracteres pour fonctionner."
     )
-  return arg
+  return string
 }
 
 const getArgs = () => {
@@ -31,10 +31,10 @@ const getArgs = () => {
 }
 
 const displayRemoveAdjacentChar = () => {
-  const arg = validateArgCount(getArgs())
-  if (!arg) return
+  const args = isValidArgsLengtt(getArgs())
+  if (!args) return
 
-  const string = validateStringArg(arg)
+  const string = isValidString(args[0])
   if (!string) return
 
   return getRemoveAdjacentChar(string)

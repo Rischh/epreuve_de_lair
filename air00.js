@@ -15,20 +15,22 @@ const splitIntoArray = (cutString, stringSeparator) => {
   return result
 }
 
-const validateArgCount = (args) => {
-  if (args.length !== 1)
+const isValidArgsLength = (args) => {
+  if (args.length !== 1) {
     return console.error(
       "Le programme a besoin d'un unique argument pour fonctionner."
     )
-  return args[0]
+  }
+  return args
 }
 
-const validateStringArg = (arg) => {
-  if (!isNaN(arg))
+const isValidString = (string) => {
+  if (!isNaN(string)) {
     return console.error(
-      "Le progranne a besoin d'une chaine de caractere pour fonctionner."
+      "Le programme a besoin d'une chaine de caractere pour fonctionner."
     )
-  return arg
+  }
+  return string
 }
 
 const getArgs = () => {
@@ -37,14 +39,14 @@ const getArgs = () => {
 }
 
 const displaySplitString = () => {
-  const arg = validateArgsCount(getArgs())
-  if (!arg) return
+  const args = isValidArgsLength(getArgs())
+  if (!args) return
 
-  const cutString = validateStringArg(arg)
-  if (!cutString) return
+  const string = isValidString(args[0])
+  if (!string) return
 
   const stringSeparator = "\n"
-  const splitString = splitIntoArray(cutString, stringSeparator)
+  const splitString = splitIntoArray(string, stringSeparator)
 
   for (const subString of splitString) {
     console.log(subString)

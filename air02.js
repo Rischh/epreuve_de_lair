@@ -8,7 +8,7 @@ const concatStrings = (strings, stringSeparator) => {
   return result
 }
 
-const validateArgsCount = (args) => {
+const isValidArgsLength = (args) => {
   if (args.length < 2)
     return console.error(
       "Le programme a besoin d'au moins 2 arguments pour fonctionner."
@@ -16,12 +16,12 @@ const validateArgsCount = (args) => {
   return args
 }
 
-const validateStringArg = (arg) => {
-  if (!isNaN(arg))
+const validateStringArg = (string) => {
+  if (!isNaN(string))
     return console.error(
-      "Le programme a besoin de chaines de caracteres pour fonctionner."
+      "Le programme a besoin d'une chaines de caracteres pour fonctionner."
     )
-  return true
+  return string
 }
 
 const getArgs = () => {
@@ -30,16 +30,17 @@ const getArgs = () => {
 }
 
 const displayConcatStrings = () => {
-  const args = validateArgsCount(getArgs())
+  const args = isValidArgsLength(getArgs())
   if (!args) return
 
-  const stringSeparator = args[args.length - 1]
-  const strings = [...args]
-  strings.pop()
-
-  for (const string of strings) {
+  const strings = []
+  for (const arg of args) {
     if (!validateStringArg(string)) return
+    strings.push(arg)
   }
+
+  const stringSeparator = strings[strings.length - 1]
+  strings.pop()
 
   return concatStrings(strings, stringSeparator)
 }

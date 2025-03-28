@@ -16,7 +16,7 @@ const getPyramid = (symbol, numberFloor) => {
   }
 }
 
-const validateArgsCount = (args) => {
+const isValidArgsLength = (args) => {
   if (args.length !== 2)
     return console.error(
       "Le programme a besoin de 2 arguments pour fonctionner."
@@ -24,12 +24,10 @@ const validateArgsCount = (args) => {
   return args
 }
 
-const validateNumericArg = (arg) => {
-  if (isNaN(arg))
-    return console.error(
-      "Le programme a besoin d'un nombre comme deuxieme argument pour definir les etages."
-    )
-  return +arg
+const isValidNumber = (n) => {
+  if (isNaN(n))
+    return console.error("Le programme a besoin d'un nombre pour fonctionner.")
+  return n
 }
 
 const getArgs = () => {
@@ -38,13 +36,14 @@ const getArgs = () => {
 }
 
 const displayPyramid = () => {
-  const args = validateArgsCount(getArgs())
+  const args = isValidArgsLength(getArgs())
   if (!args) return
 
-  const numberFloor = validateNumericArg(args[1])
+  const numberFloor = isValidNumber(args[1])
   if (!numberFloor) return
 
-  return getPyramid(args[0], numberFloor)
+  const symbol = args[0]
+  return getPyramid(symbol, numberFloor)
 }
 
 displayPyramid()

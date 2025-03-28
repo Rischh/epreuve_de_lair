@@ -12,7 +12,7 @@ const getIntruderPairs = (pairs) => {
   }
 }
 
-const validatePairs = (pairs) => {
+const isValidPairs = (pairs) => {
   const firstPairs = [...pairs]
 
   let noPair = 0
@@ -33,7 +33,7 @@ const validatePairs = (pairs) => {
     return console.error(
       "Le programme a besoin d'une liste de valeurs paires et un intrus"
     )
-  return true
+  return pairs
 }
 
 const getArgs = () => {
@@ -42,9 +42,8 @@ const getArgs = () => {
 }
 
 const displayIntruderPairs = () => {
-  const pairs = getArgs()
-
-  if (!validatePairs(pairs)) return
+  const pairs = isValidPairs(getArgs())
+  if (!pairs) return
 
   return getIntruderPairs(pairs)
 }

@@ -21,7 +21,7 @@ const getHealthPassControl = (strings, char) => {
   return result
 }
 
-const validateArgsCount = (args) => {
+const isValidArgsLength = (args) => {
   if (args.length < 2)
     return console.error(
       "Le programme a besoin d'au moins 2 arguments pour fonctionner."
@@ -29,15 +29,15 @@ const validateArgsCount = (args) => {
   return args
 }
 
-const validateStringArg = (arg) => {
-  if (!isNaN(arg))
+const isValidString = (string) => {
+  if (!isNaN(string))
     return console.error(
-      "Le programme a besoin d'une liste de chaines de caracteres pour fonctionner."
+      "Le programme a besoin d'une chaine de caracteres pour fonctionner."
     )
-  return true
+  return string
 }
 
-const validateCharCount = (char) => {
+const isValidCharLength = (char) => {
   if (char.length !== 1)
     return console.error(
       "Le programme a besoin d'un unique caractere de recherche pour fonctionner."
@@ -51,14 +51,16 @@ const getArgs = () => {
 }
 
 const displayHealthPassControl = () => {
-  const args = validateArgsCount(getArgs())
+  const args = isValidArgsLength(getArgs())
   if (!args) return
 
-  for (const arg of args) if (!validateStringArg(arg)) return
+  for (const arg of args) {
+    if (!isValidString(arg)) return
+  }
 
   const strings = [...args]
 
-  const char = validateCharCount(strings[strings.length - 1])
+  const char = isValidCharLength(strings[strings.length - 1])
   if (!char) return
 
   strings.pop()
