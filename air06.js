@@ -45,7 +45,10 @@ const validateCharCount = (char) => {
   return char
 }
 
-const getArgs = () => process.argv.slice(2)
+const getArgs = () => {
+  const args = process.argv.slice(2)
+  return args
+}
 
 const displayHealthPassControl = () => {
   const args = validateArgsCount(getArgs())

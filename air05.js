@@ -46,7 +46,10 @@ const validateNumericOffset = (offset) => {
   return offset
 }
 
-const getArgs = () => process.argv.slice(2)
+const getArgs = () => {
+  const args = process.argv.slice(2)
+  return args
+}
 
 const resolveTreatmentOnNumbers = () => {
   const args = validateArgsCount(getArgs())

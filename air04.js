@@ -25,7 +25,10 @@ const validateStringArg = (arg) => {
   return arg
 }
 
-const getArgs = () => process.argv.slice(2)
+const getArgs = () => {
+  const args = process.argv.slice(2)
+  return args
+}
 
 const displayRemoveAdjacentChar = () => {
   const arg = validateArgCount(getArgs())

@@ -36,7 +36,10 @@ const validatePairs = (pairs) => {
   return true
 }
 
-const getArgs = () => process.argv.slice(2)
+const getArgs = () => {
+  const args = process.argv.slice(2)
+  return args
+}
 
 const displayIntruderPairs = () => {
   const pairs = getArgs()

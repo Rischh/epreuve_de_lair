@@ -32,7 +32,10 @@ const validateNumericArg = (arg) => {
   return +arg
 }
 
-const getArgs = () => process.argv.slice(2)
+const getArgs = () => {
+  const args = process.argv.slice(2)
+  return args
+}
 
 const displayPyramid = () => {
   const args = validateArgsCount(getArgs())

@@ -24,7 +24,10 @@ const isValidString = (string) => {
   return string
 }
 
-const getArgs = () => process.argv.slice(2)
+const getArgs = () => {
+  const args = process.argv.slice(2)
+  return args
+}
 
 const resolveContentFile = () => {
   const args = isValidArgsLength(getArgs())
