@@ -21,10 +21,10 @@ const getHealthPassControl = (strings, char) => {
   return result
 }
 
-const isValidArgsLength = (args) => {
-  if (args.length < 2)
+const isValidArgsLength = (args, minLength) => {
+  if (args.length < minLength)
     return console.error(
-      "Le programme a besoin d'au moins 2 arguments pour fonctionner."
+      `Le programme a besoin d'au moins ${minLength} arguments pour fonctionner.`
     )
   return args
 }
@@ -51,7 +51,7 @@ const getArgs = () => {
 }
 
 const displayHealthPassControl = () => {
-  const args = isValidArgsLength(getArgs())
+  const args = isValidArgsLength(getArgs(), 2)
   if (!args) return
 
   for (const arg of args) {

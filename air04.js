@@ -9,10 +9,10 @@ const getRemoveAdjacentChar = (string) => {
   return result
 }
 
-const isValidArgsLengtt = (args) => {
-  if (args.length !== 1)
+const isValidArgsLength = (args, expectedLength) => {
+  if (args.length !== expectedLength)
     return console.error(
-      "Le programme a besoin d'un unique argument pour fonctionner."
+      `Le programme a besoin de ${expectedLength} argument pour fonctionner.`
     )
   return args
 }
@@ -31,7 +31,7 @@ const getArgs = () => {
 }
 
 const displayRemoveAdjacentChar = () => {
-  const args = isValidArgsLengtt(getArgs())
+  const args = isValidArgsLength(getArgs(), 1)
   if (!args) return
 
   const string = isValidString(args[0])

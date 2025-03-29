@@ -30,10 +30,10 @@ const splitIntoArray = (cutString, stringSeparator) => {
   return result
 }
 
-const isValidArgsLength = (args) => {
-  if (args.length !== 2) {
+const isValidArgsLength = (args, expectedLength) => {
+  if (args.length !== expectedLength) {
     return console.error(
-      "Le programme a besoin de 2 arguments pour fonctionner."
+      `Le programme a besoin de ${expectedLength} arguments pour fonctionner.`
     )
   }
   return args
@@ -54,7 +54,7 @@ const getArgs = () => {
 }
 
 const displaySplitString = () => {
-  const args = isValidArgsLength(getArgs())
+  const args = isValidArgsLength(getArgs(), 2)
   if (!args) return
 
   for (const arg of args) {
