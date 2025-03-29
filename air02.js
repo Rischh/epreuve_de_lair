@@ -35,7 +35,7 @@ const displayConcatStrings = () => {
 
   const strings = []
   for (const arg of args) {
-    if (!validateStringArg(string)) return
+    if (!validateStringArg(arg)) return
     strings.push(arg)
   }
 
