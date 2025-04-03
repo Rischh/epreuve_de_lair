@@ -34,7 +34,7 @@ const isValidNumber = (n) => {
 
 const isValidSortedNumbers = (numbers) => {
   for (let i = 0; i < numbers.length; i++) {
-    for (let j = i + 1; j < array.length; j++) {
+    for (let j = i + 1; j < numbers.length; j++) {
       if (numbers[j] < numbers[i])
         return console.error(
           "Le programme a besoin d'une liste de nombres triee pour fonctioner."
