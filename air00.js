@@ -1,15 +1,15 @@
-const splitIntoArray = (cutString, stringSeparator) => {
+const getSplitBySeparators = (string, separators) => {
   let result = []
-  let subString = ""
+  let substring = ""
 
-  for (let i = 0; i <= cutString.length; i++) {
-    if (cutString[i] === stringSeparator || i === cutString.length) {
-      if (subString.length === 0) continue
-      result.push(subString)
-      subString = ""
+  for (let i = 0; i <= string.length; i++) {
+    if (separators.includes(string[i]) || i === string.length) {
+      if (substring.length === 0) continue
+      result.push(substring)
+      substring = ""
       continue
     }
-    subString += cutString[i]
+    substring += string[i]
   }
 
   return result
@@ -38,19 +38,19 @@ const getArgs = () => {
   return args
 }
 
-const displaySplitString = () => {
+const displayArgSplitBySeparators = () => {
   const args = isValidArgsLength(getArgs(), 1)
   if (!args) return
 
   const string = isValidString(args[0])
   if (!string) return
 
-  const stringSeparator = "\n"
-  const splitString = splitIntoArray(string, stringSeparator)
+  const spaces = [" ", "\t", "\n"]
+  const splitString = getSplitBySeparators(string, spaces)
 
-  for (const subString of splitString) {
-    console.log(subString)
+  for (const substring of splitString) {
+    console.log(substring)
   }
 }
 
-displaySplitString()
+displayArgSplitBySeparators()
