@@ -9,10 +9,10 @@ const getRemoveAdjacentChar = (string) => {
   return result
 }
 
-const isValidArgsLength = (args, expectedLength) => {
-  if (args.length !== expectedLength)
+const isValidArgsLength = (args, wantedLength) => {
+  if (args.length !== wantedLength)
     return console.error(
-      `Le programme a besoin de ${expectedLength} argument pour fonctionner.`
+      `Le programme a besoin de ${wantedLength} argument pour fonctionner.`
     )
   return args
 }

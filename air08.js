@@ -41,10 +41,10 @@ const getSeparateByString = (array, string) => {
   return [firstArr, secondArr]
 }
 
-const isValidArrLength = (array, minLength) => {
-  if (array.length < minLength)
+const isValidArrLength = (array, wantedLength) => {
+  if (array.length < wantedLength)
     return console.error(
-      `Le programme a besoin d'une liste contenant au moins ${minLength} elements pour fonctionner.`
+      `Le programme a besoin d'une liste contenant au moins ${wantedLength} elements pour fonctionner.`
     )
   return array
 }

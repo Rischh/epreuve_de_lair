@@ -23,10 +23,10 @@ const partition = (numbers, start, end) => {
   return b
 }
 
-const isValidArgsLength = (args, minLength) => {
-  if (args.length < minLength)
+const isValidArgsLength = (args, wantedLength) => {
+  if (args.length < wantedLength)
     return console.error(
-      `Le programme au moins besoin de ${minLength} arguments pour fonctionner.`
+      `Le programme au moins besoin de ${wantedLength} arguments pour fonctionner.`
     )
   return args
 }

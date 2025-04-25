@@ -8,10 +8,10 @@ const concatStrings = (strings, stringSeparator) => {
   return result
 }
 
-const isValidArgsLength = (args, minLength) => {
-  if (args.length < minLength)
+const isValidArgsLength = (args, wantedLength) => {
+  if (args.length < wantedLength)
     return console.error(
-      `Le programme a besoin d'au moins ${minLength} arguments pour fonctionner.`
+      `Le programme a besoin d'au moins ${wantedLength} arguments pour fonctionner.`
     )
   return args
 }
