@@ -1,8 +1,12 @@
 const concatStrings = (strings, stringSeparator) => {
   let result = ""
 
-  for (let i = 0; i < strings.length; i++) {
-    result += strings[i] + stringSeparator
+  for (const string of strings) {
+    if (string === strings[strings.length - 1]) {
+      result += string
+    } else {
+      result += string + stringSeparator
+    }
   }
 
   return result
@@ -16,7 +20,7 @@ const isValidArgsLength = (args, wantedLength) => {
   return args
 }
 
-const validateStringArg = (string) => {
+const isValidString = (string) => {
   if (!isNaN(string))
     return console.error(
       "Le programme a besoin d'une chaines de caracteres pour fonctionner."
@@ -33,14 +37,12 @@ const displayConcatStrings = () => {
   const args = isValidArgsLength(getArgs(), 2)
   if (!args) return
 
-  const strings = []
   for (const arg of args) {
-    if (!validateStringArg(arg)) return
-    strings.push(arg)
+    if (!isValidString(arg)) return
   }
 
-  const stringSeparator = strings[strings.length - 1]
-  strings.pop()
+  const strings = args.slice(0, args.length - 1)
+  const stringSeparator = args[args.length - 1]
 
   return concatStrings(strings, stringSeparator)
 }
