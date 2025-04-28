@@ -1,21 +1,18 @@
 const getHealthPassControl = (strings, char) => {
   const result = []
 
-  LOWER_CHAR_CODE = char.toLowerCase().charCodeAt()
-  UPPER_CHAR_CODE = char.toUpperCase().charCodeAt()
+  const lowerStrings = strings.map((string) => string.toLowerCase())
+  const LOWER_CHAR_CODE = char.toLowerCase().charCodeAt()
 
-  for (let i = 0; i < strings.length; i++) {
-    let isValid = false
-    for (let j = 0; j < strings[i].length; j++) {
-      if (
-        strings[i][j].charCodeAt() === LOWER_CHAR_CODE ||
-        strings[i][j].charCodeAt() === UPPER_CHAR_CODE
-      ) {
-        isValid = true
+  for (let i = 0; i < lowerStrings.length; i++) {
+    let isChar = false
+    for (let j = 0; j < lowerStrings[i].length; j++) {
+      if (lowerStrings[i][j].charCodeAt() === LOWER_CHAR_CODE) {
+        isChar = true
         break
       }
     }
-    if (!isValid) result.push(strings[i])
+    if (!isChar) result.push(strings[i])
   }
 
   return result
@@ -58,12 +55,9 @@ const displayHealthPassControl = () => {
     if (!isValidString(arg)) return
   }
 
-  const strings = [...args]
-
-  const char = isValidCharLength(strings[strings.length - 1])
+  const strings = args.slice(0, args.length - 1)
+  const char = isValidCharLength(args[args.length - 1])
   if (!char) return
-
-  strings.pop()
 
   return getHealthPassControl(strings, char).join(", ")
 }
