@@ -53,16 +53,16 @@ const displayInsertIntoSortNumbers = () => {
   const args = isValidArgsLength(getArgs(), 3)
   if (!args) return
 
-  const numbers = []
   for (const arg of args) {
     if (!isValidNumber(arg)) return
-    numbers.push(+arg)
   }
 
+  const numbers = args.map((stringNumber) => +stringNumber)
   const insertNumber = numbers[numbers.length - 1]
-  numbers.pop()
 
-  const sortedNumbers = isValidSortedNumbers(numbers)
+  const sortedNumbers = isValidSortedNumbers(
+    numbers.slice(0, numbers.length - 1)
+  )
   if (!sortedNumbers) return
 
   return insertIntoSortedNumbers(sortedNumbers, insertNumber).join(", ")
