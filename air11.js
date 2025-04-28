@@ -1,18 +1,16 @@
-const getPyramid = (symbol, numberFloor) => {
-  let floor = symbol
+const displayPyramid = (symbol, numberFloor) => {
+  let numberSymbol = 1
 
-  for (let i = 0; i < numberFloor; i++) {
-    let symbolNumber = 1
-    for (let j = i + 1; j < numberFloor; j++) {
-      symbolNumber += 2
-    }
-    let spaceNumber = (symbolNumber - 1) / 2
-    let space = ""
-    for (let k = 0; k < spaceNumber; k++) {
-      space += " "
-    }
-    console.log(space + floor + space)
-    floor += symbol + symbol
+  for (let i = numberFloor - 1; i >= 0; i--) {
+    const numberSpace = i
+
+    console.log(
+      " ".repeat(numberSpace) +
+        symbol.repeat(numberSymbol) +
+        " ".repeat(numberSpace)
+    )
+
+    numberSymbol += 2
   }
 }
 
@@ -24,10 +22,10 @@ const isValidArgsLength = (args, wantedLength) => {
   return args
 }
 
-const isValidNumber = (n) => {
-  if (isNaN(n))
+const isValidNumber = (stringNumber) => {
+  if (isNaN(stringNumber))
     return console.error("Le programme a besoin d'un nombre pour fonctionner.")
-  return n
+  return +stringNumber
 }
 
 const getArgs = () => {
@@ -35,7 +33,7 @@ const getArgs = () => {
   return args
 }
 
-const displayPyramid = () => {
+const resolvePyramid = () => {
   const args = isValidArgsLength(getArgs(), 2)
   if (!args) return
 
@@ -43,7 +41,7 @@ const displayPyramid = () => {
   if (!numberFloor) return
 
   const symbol = args[0]
-  return getPyramid(symbol, numberFloor)
+  return displayPyramid(symbol, numberFloor)
 }
 
-displayPyramid()
+resolvePyramid()
