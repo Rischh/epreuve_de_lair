@@ -1,4 +1,4 @@
-const getRotateArray = (array) => {
+const getRotateLeftArray = (array) => {
   const result = [...array]
 
   for (let i = array.length - 1; i > 0; i--) {
@@ -22,11 +22,11 @@ const getArgs = () => {
   return args
 }
 
-const resolveRotateArray = () => {
+const resolveRotateLeftArray = () => {
   const args = isValidArgsLength(getArgs(), 2)
   if (!args) return
 
-  return getRotateArray(args).join(", ")
+  return getRotateLeftArray(args).join(", ")
 }
 
-console.log(resolveRotateArray())
+console.log(resolveRotateLeftArray())
