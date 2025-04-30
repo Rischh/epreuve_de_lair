@@ -26,11 +26,11 @@ const getSortedFusion = (firstSortedNumbers, secondSortedNumbers) => {
   return result
 }
 
-const getSeparateByString = (array, string) => {
+const getSplitAtFusion = (array) => {
   let lastIndex, firstIndex
 
   for (let i = 0; i < array.length; i++) {
-    if (array[i] === string) {
+    if (array[i] === "fusion") {
       lastIndex = i
       firstIndex = i + 1
     }
@@ -73,7 +73,12 @@ const getArgs = () => {
 }
 
 const resolveSortedFusion = () => {
-  const arrays = getSeparateByString(getArgs(), "fusion")
+  // pas assez de gestion d'erreur, reflechir sur les EH a faire
+
+  // verifier qu'il y a bien qu'une seule string et que cette string soit fusion
+  // minimum 4 nombres  
+
+  const arrays = getSplitAtFusion(getArgs())
 
   for (const array of arrays) {
     if (!isValidArrLength(array, 2)) return
