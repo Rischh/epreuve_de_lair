@@ -62,11 +62,8 @@ const resolveContentFile = () => {
   const fileName = isValidFileExtension(string, "txt")
   if (!fileName) return
 
-  const isExisting = isExistingFile(fileName)
-  if (!isExisting) return
-
-  const isReadable = isReadableFile(fileName)
-  if (!isReadable) return
+  if (!isExistingFile(fileName)) return
+  if (!isReadableFile(fileName)) return
 
   return getContentFile(fileName)
 }
