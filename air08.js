@@ -26,6 +26,22 @@ const getSortedFusion = (firstSortedNumbers, secondSortedNumbers) => {
   return result
 }
 
+const isValidArgsFormat = (args) => {
+  let stringCount = 0
+
+  for (let i = 0; i < args.length; i++) {
+    if (isNaN(args[i])) {
+      stringCount++
+    }
+  }
+
+  if (stringCount !== 1)
+    return console.error(
+      "Le programme a besoin que d'une seule chaine de caracteres."
+    )
+  return args
+}
+
 const getSplitAtFusion = (array) => {
   let lastIndex, firstIndex
 
@@ -36,9 +52,19 @@ const getSplitAtFusion = (array) => {
     }
   }
 
-  const firstArr = array.slice(0, lastIndex)
-  const secondArr = array.slice(firstIndex, array.length)
+  const firstArr = array.slice(0, lastIndex).map((ele) => +ele)
+  const secondArr = array.slice(firstIndex, array.length).map((ele) => +ele)
   return [firstArr, secondArr]
+}
+
+const isValidArrNumbers = (array) => {
+  for (let i = 0; i < array.length; i++) {
+    if (isNaN(array[i]))
+      return console.error(
+        "Le programme a besoin d'un nombre pour fonctionner."
+      )
+  }
+  return array.map((ele) => +ele)
 }
 
 const isValidArrLength = (array, wantedLength) => {
@@ -47,12 +73,6 @@ const isValidArrLength = (array, wantedLength) => {
       `Le programme a besoin d'une liste contenant au moins ${wantedLength} elements pour fonctionner.`
     )
   return array
-}
-
-const isValidNumber = (n) => {
-  if (isNaN(n))
-    return console.error("Le programme a besoin d'un nombre pour fonctionner.")
-  return n
 }
 
 const isValidSortedArray = (numbers) => {
@@ -73,35 +93,23 @@ const getArgs = () => {
 }
 
 const resolveSortedFusion = () => {
-  // pas assez de gestion d'erreur, reflechir sur les EH a faire
+  const args = isValidArgsFormat(getArgs())
+  if (!args) return
 
-  // verifier qu'il y a bien qu'une seule string et que cette string soit fusion
-  // minimum 4 nombres  
+  const arrays = getSplitAtFusion(args)
+  const [firstArr, secondArr] = arrays
 
-  const arrays = getSplitAtFusion(getArgs())
+  const firstArrNumbers = firstArr.map((ele) => +ele)
+  const secondArrNumbers = secondArr.map((ele) => +ele)
+  const numbers = [firstArrNumbers, secondArrNumbers]
 
-  for (const array of arrays) {
+  for (const array of numbers) {
     if (!isValidArrLength(array, 2)) return
+
+    if (!isValidSortedArray(array)) return
   }
 
-  const firstArr = []
-  for (const element of arrays[0]) {
-    if (!isValidNumber(element)) return
-    firstArr.push(+element)
-  }
-
-  const firstSortedNumbers = isValidSortedArray(firstArr)
-  if (!firstSortedNumbers) return
-
-  const secondArr = []
-  for (const element of arrays[1]) {
-    if (!isValidNumber(element)) return
-    secondArr.push(+element)
-  }
-
-  const secondSortedNumbers = isValidSortedArray(secondArr)
-  if (!secondSortedNumbers) return
-
+  const [firstSortedNumbers, secondSortedNumbers] = numbers
   return getSortedFusion(firstSortedNumbers, secondSortedNumbers)
 }
 
