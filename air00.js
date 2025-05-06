@@ -22,15 +22,6 @@ const isValidLength = (validLength) => {
   return true
 }
 
-const isValidString = (string) => {
-  if (!isNaN(string)) {
-    return console.error(
-      "Le programme a besoin d'une chaine de caractere pour fonctionner."
-    )
-  }
-  return string
-}
-
 const getArgs = () => {
   const args = process.argv.slice(2)
   return args
@@ -42,10 +33,8 @@ const displayArgSplitBySeparators = () => {
   const validLength = args.length === 1
   if (!isValidLength(validLength)) return
 
-  const string = isValidString(args[0])
-  if (!string) return
-
   const spaces = [" ", "\t", "\n"]
+  const string = args[0]
   const splitString = getSplitBySeparators(string, spaces)
 
   for (const substring of splitString) {
