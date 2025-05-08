@@ -40,15 +40,6 @@ const isValidArgsLength = (args, wantedLength) => {
   return args
 }
 
-const isValidString = (string) => {
-  if (!isNaN(string)) {
-    return console.error(
-      "Le progranne a besoin d'une chaine de caracteres pour fonctionner."
-    )
-  }
-  return string
-}
-
 const getArgs = () => {
   const args = process.argv.slice(2)
   return args
@@ -57,10 +48,6 @@ const getArgs = () => {
 const displaySplitedArg = () => {
   const args = isValidArgsLength(getArgs(), 2)
   if (!args) return
-
-  for (const arg of args) {
-    if (!isValidString(arg)) return
-  }
 
   const [string, stringSeparator] = args
 
