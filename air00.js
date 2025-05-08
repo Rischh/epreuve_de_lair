@@ -2,15 +2,16 @@ const splitBySeparators = (string, separators) => {
   let result = []
   let substring = ""
 
-  for (let i = 0; i <= string.length; i++) {
-    if (separators.includes(string[i]) || i === string.length) {
+  for (const char of string) {
+    if (separators.includes(char)) {
       if (substring.length === 0) continue
       result.push(substring)
       substring = ""
       continue
     }
-    substring += string[i]
+    substring += char
   }
+  result.push(substring)
 
   return result
 }
