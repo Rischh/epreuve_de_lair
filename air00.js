@@ -1,4 +1,4 @@
-const getSplitBySeparators = (string, separators) => {
+const splitBySeparators = (string, separators) => {
   let result = []
   let substring = ""
 
@@ -35,9 +35,9 @@ const displayArgSplitBySeparators = () => {
 
   const spaces = [" ", "\t", "\n"]
   const string = args[0]
-  const splitString = getSplitBySeparators(string, spaces)
+  const splitedString = splitBySeparators(string, spaces)
 
-  for (const substring of splitString) {
+  for (const substring of splitedString) {
     console.log(substring)
   }
 }
