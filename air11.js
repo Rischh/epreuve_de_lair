@@ -14,12 +14,10 @@ const displayPyramid = (symbol, numberFloor) => {
   }
 }
 
-const isValidArgsLength = (args, wantedLength) => {
-  if (args.length !== wantedLength)
-    return console.error(
-      `Le programme a besoin de ${wantedLength} arguments pour fonctionner.`
-    )
-  return args
+const isValidLength = (validLength) => {
+  if (!validLength)
+    return console.error("ERROR: Number of Arguments is Invalid.")
+  return true
 }
 
 const isValidNumber = (stringNumber) => {
@@ -34,8 +32,10 @@ const getArgs = () => {
 }
 
 const resolvePyramid = () => {
-  const args = isValidArgsLength(getArgs(), 2)
-  if (!args) return
+  const args = getArgs()
+  const validLength = args.length === 2
+
+  if (!isValidLength(validLength)) return
 
   const numberFloor = isValidNumber(args[1])
   if (!numberFloor) return

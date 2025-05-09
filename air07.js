@@ -18,12 +18,10 @@ const insertIntoSortedNumbers = (numbers, insertNumber) => {
   return insertInNumbers
 }
 
-const isValidArgsLength = (args, wantedLength) => {
-  if (args.length < wantedLength)
-    return console.error(
-      `Le programme a besoin d'au moins ${wantedLength} arguments pour fonctionner.`
-    )
-  return args
+const isValidLength = (validLength) => {
+  if (!validLength)
+    return console.error("ERROR: Number of Arguments is Invalid.")
+  return true
 }
 
 const isValidNumber = (n) => {
@@ -50,8 +48,10 @@ const getArgs = () => {
 }
 
 const displayInsertIntoSortNumbers = () => {
-  const args = isValidArgsLength(getArgs(), 3)
-  if (!args) return
+  const args = getArgs()
+  const validLength = args.length > 3
+
+  if (!isValidLength(validLength)) return
 
   for (const arg of args) {
     if (!isValidNumber(arg)) return

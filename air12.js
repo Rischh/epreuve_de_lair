@@ -23,12 +23,10 @@ const partition = (numbers, start, end) => {
   return b
 }
 
-const isValidArgsLength = (args, wantedLength) => {
-  if (args.length < wantedLength)
-    return console.error(
-      `Le programme au moins besoin de ${wantedLength} arguments pour fonctionner.`
-    )
-  return args
+const isValidLength = (validLength) => {
+  if (!validLength)
+    return console.error("ERROR: Number of Arguments is Invalid.")
+  return true
 }
 
 const isValidNumber = (stringNumber) => {
@@ -45,8 +43,10 @@ const getArgs = () => {
 }
 
 const resolveQuickSort = () => {
-  const args = isValidArgsLength(getArgs(), 2)
-  if (!args) return
+  const args = getArgs()
+  const validLength = args.length > 2
+
+  if (!isValidLength(validLength)) return
 
   const numbers = []
   for (const arg of args) {

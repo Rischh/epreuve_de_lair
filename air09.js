@@ -9,12 +9,10 @@ const getRotateLeftArray = (array) => {
   return result
 }
 
-const isValidArgsLength = (args, wantedLength) => {
-  if (args.length < wantedLength)
-    return console.error(
-      `Le programme a besoin d'au moins ${wantedLength} arguments pour fonctionner.`
-    )
-  return args
+const isValidLength = (validLength) => {
+  if (!validLength)
+    return console.error("ERROR: Number of Arguments is Invalid.")
+  return true
 }
 
 const getArgs = () => {
@@ -23,8 +21,10 @@ const getArgs = () => {
 }
 
 const resolveRotateLeftArray = () => {
-  const args = isValidArgsLength(getArgs(), 2)
-  if (!args) return
+  const args = getArgs()
+  const validLength = args.length > 2
+
+  if (!isValidLength(validLength)) return
 
   return getRotateLeftArray(args).join(", ")
 }
