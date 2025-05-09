@@ -28,7 +28,7 @@ const getArgs = () => {
   return args
 }
 
-const displayRemoveAdjacentChar = () => {
+const resolveRemoveAdjacentChar = () => {
   const args = getArgs()
   const validLength = args.length === 1
 
@@ -40,4 +40,4 @@ const displayRemoveAdjacentChar = () => {
   return getRemoveAdjacentChar(string)
 }
 
-console.log(displayRemoveAdjacentChar())
+console.log(resolveRemoveAdjacentChar())
