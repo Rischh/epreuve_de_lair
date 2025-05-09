@@ -18,10 +18,10 @@ const isValidLength = (validLength) => {
   return true
 }
 
-const isValidNumber = (n) => {
-  if (isNaN(n))
+const isValidNumber = (stringNumber) => {
+  if (isNaN(stringNumber))
     return console.error("Le programme a besoin d'un nombre pour fonctionner.")
-  return n
+  return +stringNumber
 }
 
 const isValidOperator = (operator) => {
