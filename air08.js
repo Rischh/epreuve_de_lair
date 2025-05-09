@@ -26,7 +26,13 @@ const getSortedFusion = (firstSortedNumbers, secondSortedNumbers) => {
   return result
 }
 
-const isValidArgsFormat = (args) => {
+const isValidLength = (validLength) => {
+  if (!validLength)
+    return console.error("ERROR: Number of Arguments is Invalid.")
+  return true
+}
+
+const isValidStringCount = (args, wantedCount) => {
   let stringCount = 0
 
   for (let i = 0; i < args.length; i++) {
@@ -35,14 +41,14 @@ const isValidArgsFormat = (args) => {
     }
   }
 
-  if (stringCount !== 1)
+  if (stringCount !== wantedCount)
     return console.error(
       "Le programme a besoin que d'une seule chaine de caracteres."
     )
-  return args
+  return true
 }
 
-const getSplitAtFusion = (array) => {
+const splitAtFusion = (array) => {
   let lastIndex, firstIndex
 
   for (let i = 0; i < array.length; i++) {
@@ -67,14 +73,6 @@ const isValidArrNumbers = (array) => {
   return array.map((ele) => +ele)
 }
 
-const isValidArrLength = (array, wantedLength) => {
-  if (array.length < wantedLength)
-    return console.error(
-      `Le programme a besoin d'une liste contenant au moins ${wantedLength} elements pour fonctionner.`
-    )
-  return array
-}
-
 const isValidSortedArray = (numbers) => {
   for (let i = 0; i < numbers.length; i++) {
     for (let j = i + 1; j < numbers.length; j++) {
@@ -93,19 +91,20 @@ const getArgs = () => {
 }
 
 const resolveSortedFusion = () => {
-  const args = isValidArgsFormat(getArgs())
-  if (!args) return
+  const args = getArgs()
 
-  const arrays = getSplitAtFusion(args)
-  const [firstArr, secondArr] = arrays
+  const validLength = args.length > 5
+  if (!isValidLength(validLength)) return
 
-  const firstArrNumbers = firstArr.map((ele) => +ele)
-  const secondArrNumbers = secondArr.map((ele) => +ele)
+  if (!isValidStringCount(args, 1)) return
+
+  const arrays = splitAtFusion(args)
+
+  const firstArrNumbers = arrays[0].map((ele) => +ele)
+  const secondArrNumbers = arrays[1].map((ele) => +ele)
   const numbers = [firstArrNumbers, secondArrNumbers]
 
   for (const array of numbers) {
-    if (!isValidArrLength(array, 2)) return
-
     if (!isValidSortedArray(array)) return
   }
 
