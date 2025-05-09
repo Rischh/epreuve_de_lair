@@ -18,28 +18,16 @@ const isValidLength = (validLength) => {
   return true
 }
 
-const isValidString = (string) => {
-  if (!isNaN(string))
-    return console.error(
-      "Le programme a besoin d'une chaines de caracteres pour fonctionner."
-    )
-  return string
-}
-
 const getArgs = () => {
   const args = process.argv.slice(2)
   return args
 }
 
-const displayConcatStrings = () => {
+const getConcatStrings = () => {
   const args = getArgs()
   const validLength = args.length < 2
 
   if (!isValidLength(validLength)) return
-
-  for (const arg of args) {
-    if (!isValidString(arg)) return
-  }
 
   const strings = args.slice(0, args.length - 1)
   const stringSeparator = args[args.length - 1]
@@ -47,4 +35,4 @@ const displayConcatStrings = () => {
   return concatStrings(strings, stringSeparator)
 }
 
-console.log(displayConcatStrings())
+console.log(getConcatStrings())
