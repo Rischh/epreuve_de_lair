@@ -30,7 +30,7 @@ const resolveContentFile = () => {
 
   if (!isValidLength(validLength)) return
 
-  const fileName = isValidFileExtension(string, "txt")
+  const fileName = isValidFileExtension(args[0], "txt")
   if (!fileName) return
 
   return getContentFile(fileName)
