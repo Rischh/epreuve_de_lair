@@ -25,7 +25,7 @@ const getArgs = () => {
 
 const getConcatStrings = () => {
   const args = getArgs()
-  const validLength = args.length < 2
+  const validLength = args.length > 2
 
   if (!isValidLength(validLength)) return
 
