@@ -12,11 +12,11 @@ const displayEpreuvesTestsResult = (epreuvesTests) => {
 
       if (isExpectedResult(testFile, expectedResult)) {
         console.log(
-          `${fileName} (${count}/${testsNumber}) : \x1b[32msuccess\x1b[0m`
+          `${fileName} (${count}/${testsNumber}) : ${color.green}success${color.reset}`
         )
       } else {
         console.error(
-          `${fileName} (${count}/${testsNumber}) : \x1b[31mfailure\x1b[0m`
+          `${fileName} (${count}/${testsNumber}) : ${color.red}failure${color.reset}`
         )
       }
     }
@@ -32,6 +32,12 @@ const isExpectedResult = (testFile, expectedResult) => {
   const testResult = dataTest.stdout
 
   return testResult === expectedResult
+}
+
+const color = {
+  green: "\x1b[32m",
+  red: "\x1b[31m",
+  reset: "\x1b[0m",
 }
 
 const epreuvesTests = [
