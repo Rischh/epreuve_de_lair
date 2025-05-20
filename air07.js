@@ -24,22 +24,21 @@ const isValidLength = (validLength) => {
   return true
 }
 
-const isValidNumber = (n) => {
-  if (isNaN(n))
+const isValidNumber = (stringNumber) => {
+  if (isNaN(stringNumber))
     return console.error("Le programme a besoin d'un nombre pour fonctionner.")
-  return n
+  return +stringNumber
 }
 
-const isValidSortedNumbers = (numbers) => {
-  for (let i = 0; i < numbers.length; i++) {
-    for (let j = i + 1; j < numbers.length; j++) {
-      if (numbers[j] < numbers[i])
-        return console.error(
-          "Le programme a besoin d'une liste de nombres triee pour fonctioner."
-        )
+const isSorted = (numbers) => {
+  for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i - 1] > numbers[i]) {
+      return console.error(
+        "Le programme a besoin d'une liste de nombres triee pour fonctioner."
+      )
     }
   }
-  return numbers
+  return true
 }
 
 const getArgs = () => {
@@ -47,25 +46,24 @@ const getArgs = () => {
   return args
 }
 
-const displayInsertIntoSortNumbers = () => {
+const getInsertIntoSortedNumbers = () => {
   const args = getArgs()
-  const validLength = args.length > 3
 
+  const validLength = args.length >= 3
   if (!isValidLength(validLength)) return
 
+  const numbers = []
   for (const arg of args) {
-    if (!isValidNumber(arg)) return
+    const number = isValidNumber(arg)
+    if (!number) return
+    numbers.push(number)
   }
 
-  const numbers = args.map((stringNumber) => +stringNumber)
+  const sortedNumbers = numbers.slice(0, numbers.length - 1)
+  if (!isSorted(sortedNumbers)) return
+
   const insertNumber = numbers[numbers.length - 1]
-
-  const sortedNumbers = isValidSortedNumbers(
-    numbers.slice(0, numbers.length - 1)
-  )
-  if (!sortedNumbers) return
-
   return insertIntoSortedNumbers(sortedNumbers, insertNumber).join(", ")
 }
 
-console.log(displayInsertIntoSortNumbers())
+console.log(getInsertIntoSortedNumbers())
