@@ -1,39 +1,21 @@
-const getIntruderPairs = (pairs) => {
-  for (let i = 0; i < pairs.length; i++) {
+const findIntruder = (array) => {
+  for (let i = 0; i < array.length; i++) {
     let isIntruder = true
-    for (let j = i + 1; j < pairs.length; j++) {
-      if (pairs[i] === pairs[j]) {
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[i] === array[j]) {
         isIntruder = false
-        pairs.splice(j, 1)
+        array.splice(j, 1)
         break
       }
     }
-    if (isIntruder) return pairs[i]
+    if (isIntruder) return array[i]
   }
 }
 
-const isValidPairs = (pairs) => {
-  const firstPairs = [...pairs]
-
-  let noPair = 0
-
-  for (let i = 0; i < firstPairs.length; i++) {
-    let isPair = true
-    for (let j = i + 1; j <= firstPairs.length; j++) {
-      if (firstPairs[i] === firstPairs[j]) {
-        firstPairs.splice(j, 1)
-        isPair = false
-        break
-      }
-    }
-    if (isPair) noPair++
-  }
-
-  if (noPair !== 1)
-    return console.error(
-      "Le programme a besoin d'une liste de valeurs paires et un intrus"
-    )
-  return pairs
+const isValidLength = (validLength) => {
+  if (!validLength)
+    return console.error("ERROR: Number of Arguments is Invalid.")
+  return true
 }
 
 const getArgs = () => {
@@ -41,11 +23,13 @@ const getArgs = () => {
   return args
 }
 
-const displayIntruderPairs = () => {
-  const pairs = isValidPairs(getArgs())
-  if (!pairs) return
+const getFindIntruder = () => {
+  const args = getArgs()
 
-  return getIntruderPairs(pairs)
+  const validLength = args.length >= 2
+  if (!isValidLength(validLength)) return
+
+  return findIntruder(args)
 }
 
-console.log(displayIntruderPairs())
+console.log(getFindIntruder())
