@@ -1,4 +1,4 @@
-const getRemoveAdjacentChar = (string) => {
+const removeAdjacentChar = (string) => {
   let result = ""
 
   for (let i = 0; i < string.length; i++) {
@@ -28,16 +28,16 @@ const getArgs = () => {
   return args
 }
 
-const resolveRemoveAdjacentChar = () => {
+const getRemoveAdjacentChar = () => {
   const args = getArgs()
-  const validLength = args.length === 1
 
+  const validLength = args.length === 1
   if (!isValidLength(validLength)) return
 
   const string = isValidString(args[0])
   if (!string) return
 
-  return getRemoveAdjacentChar(string)
+  return removeAdjacentChar(string)
 }
 
-console.log(resolveRemoveAdjacentChar())
+console.log(getRemoveAdjacentChar())
