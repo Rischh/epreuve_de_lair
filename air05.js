@@ -33,9 +33,10 @@ const resolveTreatmentOnNumbers = () => {
   if (!isValidLength(validLength)) return
 
   const numbers = []
-  for (let i = 0; i < args.length; i++) {
-    if (!isValidNumber(args[i])) return
-    numbers.push(+args[i])
+  for (const arg of args) {
+    const number = isValidNumber(arg)
+    if (!number) return
+    numbers.push(number)
   }
 
   return getTreatmentOnNumbers(numbers)
