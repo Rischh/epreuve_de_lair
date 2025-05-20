@@ -1,18 +1,25 @@
-const getHealthPassControl = (strings, char) => {
+const filterArrayBySearchString = (strings, searchString) => {
   const result = []
 
-  const lowerStrings = strings.map((string) => string.toLowerCase())
-  const lowerCharCode = char.toLowerCase().charCodeAt()
+  for (const string of strings) {
+    let hasSearchString = false
 
-  for (let i = 0; i < lowerStrings.length; i++) {
-    let isChar = false
-    for (let j = 0; j < lowerStrings[i].length; j++) {
-      if (lowerStrings[i][j].charCodeAt() === lowerCharCode) {
-        isChar = true
-        break
+    const lowerString = string.toLowerCase()
+    for (let i = 0; i < lowerString.length; i++) {
+      const lowerSearchString = searchString.toLowerCase()
+      if (lowerString[i] === lowerSearchString[0]) {
+        hasSearchString = true
+
+        for (let j = 1; j < lowerSearchString.length; j++) {
+          if (lowerString[i + j] !== lowerSearchString[j]) {
+            hasSearchString = false
+            break
+          }
+        }
       }
     }
-    if (!isChar) result.push(strings[i])
+
+    if (!hasSearchString) result.push(string)
   }
 
   return result
@@ -32,23 +39,15 @@ const isValidString = (string) => {
   return string
 }
 
-const isValidCharLength = (char) => {
-  if (char.length !== 1)
-    return console.error(
-      "Le programme a besoin d'un unique caractere de recherche pour fonctionner."
-    )
-  return char
-}
-
 const getArgs = () => {
   const args = process.argv.slice(2)
   return args
 }
 
-const resolveHealthPassControl = () => {
+const getFilterArrayBySearchString = () => {
   const args = getArgs()
-  const validLength = args.length > 2
 
+  const validLength = args.length > 2
   if (!isValidLength(validLength)) return
 
   for (const arg of args) {
@@ -56,10 +55,8 @@ const resolveHealthPassControl = () => {
   }
 
   const strings = args.slice(0, args.length - 1)
-  const char = isValidCharLength(args[args.length - 1])
-  if (!char) return
-
-  return getHealthPassControl(strings, char).join(", ")
+  const searchString = args[args.length - 1]
+  return filterArrayBySearchString(strings, searchString).join(", ")
 }
 
-console.log(resolveHealthPassControl())
+console.log(getFilterArrayBySearchString())
